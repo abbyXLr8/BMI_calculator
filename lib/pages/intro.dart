@@ -32,13 +32,13 @@ class _CreateAppState extends State<CreateApp> {
               child: Column(
                 children: [
                   AppBar(
-                    title: Text('BMI App'),
+                    //title: Text('BMI App'),
                     backgroundColor: Colors.transparent,
                   ),
                   //Spacer(),
                   Container(
                     width: 300,
-                    height: 350,
+                    height: 300,
                     decoration: BoxDecoration(
                         image: DecorationImage(
                       image: AssetImage('assets/images/robot.png'),
@@ -105,19 +105,32 @@ class WhiteContainer extends StatelessWidget {
               SizedBox(height: 100),
               Align(
                 alignment: Alignment.bottomRight,
-                child: ElevatedButton(
-                  onPressed: () {
-                    final text = _controller.text;
-                    if (text.isNotEmpty) {
-                      Navigator.push(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => WelcomeApp(name: text),
-                        ),
-                      );
-                    }
+                          builder: (context) => WelcomeApp(
+                            name: _controller.text,
+                          ),
+                        ));
                   },
-                  child: Text('Next ->'),
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    height: 50,
+                    width: 220,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.lightBlueAccent,
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Calculate your BMI',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ),
                 ),
               )
             ],
