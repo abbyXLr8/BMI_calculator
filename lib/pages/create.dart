@@ -10,20 +10,11 @@ class CreateApp extends StatefulWidget {
 class _CreateAppState extends State<CreateApp> {
   @override
   final TextEditingController _controller = TextEditingController();
-  void _navigateToWelcomPage(BuildContext context) {
-    final text = _controller.text;
-    if (text.isNotEmpty) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => WelcomeApp(name: text),
-        ),
-      );
-    }
-  }
+  void _navigateToWelcomPage(BuildContext context) {}
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
       body: Center(
         child: Column(
           children: [
@@ -32,7 +23,10 @@ class _CreateAppState extends State<CreateApp> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.greenAccent, Colors.lightBlueAccent],
+                  colors: [
+                    Colors.greenAccent,
+                    Colors.lightBlueAccent,
+                  ],
                 ),
               ),
               child: Column(
@@ -54,43 +48,70 @@ class _CreateAppState extends State<CreateApp> {
                     'Welcome',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
-                  Container(
-                    height: 500,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 40, width: 10),
-                          Text(
-                            'Whats your name?',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                          TextField(
-                            controller: _controller,
-                            decoration: InputDecoration(
-                                labelText: 'Enter your name:',
-                                border: OutlineInputBorder()),
-                          ),
-                          SizedBox(height: 100),
-                          ElevatedButton(
-                              onPressed: () => _navigateToWelcomPage(context),
-                              child: Text('Next ->'))
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            WhiteContainer(controller: _controller)
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class WhiteContainer extends StatelessWidget {
+  const WhiteContainer({
+    super.key,
+    required TextEditingController controller,
+  }) : _controller = controller;
+
+  final TextEditingController _controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 500,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              SizedBox(height: 40, width: 10),
+              Text(
+                'Whats your name?',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                    labelText: 'Enter your name:',
+                    border: OutlineInputBorder()),
+              ),
+              SizedBox(height: 100),
+              ElevatedButton(
+                  onPressed: () {
+                    final text = _controller.text;
+                    if (text.isNotEmpty) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WelcomeApp(name: text),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text('Next ->'))
+            ],
+          ),
         ),
       ),
     );
