@@ -38,7 +38,7 @@ class _CreateAppState extends State<CreateApp> {
                   //Spacer(),
                   Container(
                     width: 300,
-                    height: 200,
+                    height: 350,
                     decoration: BoxDecoration(
                         image: DecorationImage(
                       image: AssetImage('assets/images/robot.png'),
@@ -48,6 +48,9 @@ class _CreateAppState extends State<CreateApp> {
                     'Welcome',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
+                  SizedBox(
+                    height: 30,
+                  )
                 ],
               ),
             ),
@@ -84,11 +87,14 @@ class WhiteContainer extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              SizedBox(height: 40, width: 10),
-              Text(
-                'Whats your name?',
-                textAlign: TextAlign.start,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              SizedBox(height: 70, width: 10),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Whats your name?',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ),
               ),
               TextField(
                 controller: _controller,
@@ -97,7 +103,9 @@ class WhiteContainer extends StatelessWidget {
                     border: OutlineInputBorder()),
               ),
               SizedBox(height: 100),
-              ElevatedButton(
+              Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
                   onPressed: () {
                     final text = _controller.text;
                     if (text.isNotEmpty) {
@@ -109,7 +117,9 @@ class WhiteContainer extends StatelessWidget {
                       );
                     }
                   },
-                  child: Text('Next ->'))
+                  child: Text('Next ->'),
+                ),
+              )
             ],
           ),
         ),
