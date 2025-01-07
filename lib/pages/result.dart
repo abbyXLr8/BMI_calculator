@@ -31,7 +31,20 @@ class ResultPage extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
+            Expanded(
+              child: Container(
+                height: 500,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
