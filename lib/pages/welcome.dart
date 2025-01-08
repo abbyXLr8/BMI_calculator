@@ -63,7 +63,10 @@ class WhiteContainer extends StatefulWidget {
 class _WhiteContainerState extends State<WhiteContainer> {
   bool _isFirstButtonSelected = true;
   final weightvalues = <String>['Kgs', 'Lbs'];
-  TextEditingController controller = TextEditingController();
+
+  TextEditingController ageController = TextEditingController(); 
+  TextEditingController heightController = TextEditingController(); 
+  TextEditingController weightController = TextEditingController(); 
 
   void _selectedFirstButton() {
     setState(() {
@@ -98,6 +101,7 @@ class _WhiteContainerState extends State<WhiteContainer> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CircleAvatar(
                         radius: 80,
@@ -122,6 +126,7 @@ class _WhiteContainerState extends State<WhiteContainer> {
                     color: const Color.fromARGB(255, 208, 240, 255),
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       InkWell(
                         onTap: () {
@@ -188,7 +193,7 @@ class _WhiteContainerState extends State<WhiteContainer> {
                     SizedBox(
                       width: 20,
                     ),
-                    CustomTextField(controller: controller),
+                    CustomTextField(controller: ageController),
                   ],
                 ),
                 SizedBox(
@@ -204,16 +209,7 @@ class _WhiteContainerState extends State<WhiteContainer> {
                     SizedBox(
                       width: 20,
                     ),
-                    Container(
-                      height: 40,
-                      width: 270,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color.fromARGB(255, 208, 240, 255),
-                        //boxShadow: BoxShadow(blurStyle: BlurStyle.normal)
-                      ),
-                      child: TextField(),
-                    ),
+                    CustomTextField(controller: weightController),
                     // DropdownButton(
                     //     items: List.from(weightvalues), onChanged: null),
                   ],
@@ -231,16 +227,7 @@ class _WhiteContainerState extends State<WhiteContainer> {
                     SizedBox(
                       width: 20,
                     ),
-                    Container(
-                      height: 40,
-                      width: 270,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color.fromARGB(255, 208, 240, 255),
-                        //boxShadow: BoxShadow(blurStyle: BlurStyle.normal)
-                      ),
-                      child: TextField(),
-                    ),
+                    CustomTextField(controller: heightController),
                   ],
                 ),
                 SizedBox(
@@ -248,10 +235,13 @@ class _WhiteContainerState extends State<WhiteContainer> {
                 ),
                 InkWell(
                   onTap: () {
+                    double weight = double.parse(weightController.text);
+                    double height= double.parse(heightController.text);
+                    double bmiValue = (weight/(height*height))*10000;  //square(5cm*100)=>meter square
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ResultPage(),
+                          builder: (context) => ResultPage(bmi_value: bmiValue,),
                         ));
                   },
                   borderRadius: BorderRadius.circular(8),

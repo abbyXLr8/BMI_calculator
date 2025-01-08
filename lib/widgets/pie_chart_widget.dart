@@ -3,8 +3,10 @@ import 'package:pie_chart/pie_chart.dart';
 
 class PieChartWidget extends StatelessWidget {
   const PieChartWidget({
-    super.key,
+    super.key, required this.bmi_value,
   });
+
+  final double bmi_value;
 
   @override
   Widget build(BuildContext context) {
@@ -13,17 +15,17 @@ class PieChartWidget extends StatelessWidget {
       child: PieChart(
         initialAngleInDegree: -90,
         ringStrokeWidth: 14,
-        dataMap: {'BMI': 18},
+        dataMap: {'BMI': bmi_value}, //progress bar
         chartType: ChartType.ring,
         baseChartColor: Colors.grey[200]!,
-        colorList: [Colors.green],
+        colorList: (bmi_value<25)?[Colors.green]:[Colors.red],
         chartValuesOptions: ChartValuesOptions(
           showChartValues: false,
           showChartValuesOutside: false,
           showChartValueBackground: false,
         ),
-        totalValue: 40,
-        centerText: '19.9',
+        totalValue: 50,
+        centerText: bmi_value.toStringAsFixed(2),
         centerTextStyle: TextStyle(
           fontSize: 26,
           color: Colors.black

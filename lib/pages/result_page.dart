@@ -4,8 +4,9 @@ import 'package:flutter_application_1/widgets/classification_widgets.dart';
 import 'package:flutter_application_1/widgets/pie_chart_widget.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({super.key});
-
+  const ResultPage({super.key, required this.bmi_value});
+  
+  final double bmi_value;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,32 +69,34 @@ class ResultPage extends StatelessWidget {
                         topRight: Radius.circular(30))),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 40),
-                      PieChartWidget(),
-                      SizedBox(height: 40, width: 10),
-                      Text(
-                        'You Have Normal body Weight !',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 40),
+                        PieChartWidget(bmi_value: bmi_value,),
+                        SizedBox(height: 40, width: 10),
+                        Text(
+                          'You Have Normal body Weight !',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        decoration: BoxDecoration(
-                            color: Colors.lightBlue[200],
-                            borderRadius: BorderRadius.circular(26)),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 26, vertical: 16),
-                        child: BmiDetailsRowWidget(),
-                      ),
-                      SizedBox(height: 20),
-                      ClassificationColumnData()
-                    ],
+                        SizedBox(height: 20),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                              color: Colors.lightBlue[200],
+                              borderRadius: BorderRadius.circular(26)),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 26, vertical: 16),
+                          child: BmiDetailsRowWidget(),
+                        ),
+                        SizedBox(height: 20),
+                        ClassificationColumnData()
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -9,39 +9,32 @@ class CreateApp extends StatefulWidget {
 
 class _CreateAppState extends State<CreateApp> {
   @override
-  final TextEditingController _controller = TextEditingController();
-  void _navigateToWelcomPage(BuildContext context) {}
 
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.lightBlueAccent,
       body: Center(
-        child: Column(
-          children: [
-            Container(
-              //height: 500,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.greenAccent,
-                    Colors.lightBlueAccent,
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                //height: 500,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.greenAccent,
+                      Colors.lightBlueAccent,
+                    ],
+                  ),
                 ),
-              ),
-              child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    AppBar(
-                      //title: Text('BMI App'),
-                      backgroundColor: Colors.transparent,
-                    ),
-                    //Spacer(),
+                    SizedBox(height: 10),
                     Container(
-                      width: 300,
-                      height: 300,
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height * 0.3,
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage('assets/images/robot.png'),
@@ -49,47 +42,47 @@ class _CreateAppState extends State<CreateApp> {
                     ),
                     Text(
                       'Welcome',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                     ),
-                    SizedBox(
-                      height: 30,
-                    )
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            WhiteContainer(controller: _controller)
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              WhiteContainer()
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class WhiteContainer extends StatelessWidget {
+class WhiteContainer extends StatefulWidget {
   const WhiteContainer({
     super.key,
-    required TextEditingController controller,
-  }) : _controller = controller;
+  });
+  
+  @override
+  State<WhiteContainer> createState() => _WhiteContainerState();
+}
 
-  final TextEditingController _controller;
+class _WhiteContainerState extends State<WhiteContainer> {
+  final TextEditingController _namecontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: 500,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.592,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(height: 70, width: 10),
@@ -101,11 +94,11 @@ class WhiteContainer extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
               ),
+              SizedBox(height: 20),
               TextField(
-                controller: _controller,
+                controller: _namecontroller,
                 decoration: InputDecoration(
-                    labelText: 'Enter your name:',
-                    border: OutlineInputBorder()),
+                    labelText: 'Enter your name:', border: OutlineInputBorder()),
               ),
               SizedBox(height: 100),
               Align(
@@ -116,7 +109,7 @@ class WhiteContainer extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => WelcomeApp(
-                            name: _controller.text,
+                            name: _namecontroller.text,
                           ),
                         ));
                   },
@@ -131,13 +124,13 @@ class WhiteContainer extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Calculate your BMI',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                        style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
