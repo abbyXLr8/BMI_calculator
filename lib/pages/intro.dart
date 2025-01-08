@@ -14,11 +14,13 @@ class _CreateAppState extends State<CreateApp> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.lightBlueAccent,
       body: Center(
         child: Column(
           children: [
             Container(
+              //height: 500,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -29,29 +31,32 @@ class _CreateAppState extends State<CreateApp> {
                   ],
                 ),
               ),
-              child: Column(
-                children: [
-                  AppBar(
-                    //title: Text('BMI App'),
-                    backgroundColor: Colors.transparent,
-                  ),
-                  //Spacer(),
-                  Container(
-                    width: 300,
-                    height: 300,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage('assets/images/robot.png'),
-                    )),
-                  ),
-                  Text(
-                    'Welcome',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  )
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    AppBar(
+                      //title: Text('BMI App'),
+                      backgroundColor: Colors.transparent,
+                    ),
+                    //Spacer(),
+                    Container(
+                      width: 300,
+                      height: 300,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage('assets/images/robot.png'),
+                      )),
+                    ),
+                    Text(
+                      'Welcome',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
