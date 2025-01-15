@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/pages/welcome.dart';
 
 class CreateApp extends StatefulWidget {
+  const CreateApp({super.key});
+
   @override
   State<CreateApp> createState() => _CreateAppState();
 }

@@ -6,7 +6,7 @@ import 'package:flutter_application_1/widgets/custom_text_field_widget.dart';
 
 class WelcomeApp extends StatelessWidget {
   final String name;
-  WelcomeApp({required this.name});
+  const WelcomeApp({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +56,8 @@ class WelcomeApp extends StatelessWidget {
 }
 
 class WhiteContainer extends StatefulWidget {
+  const WhiteContainer({super.key});
+
   @override
   _WhiteContainerState createState() => _WhiteContainerState();
 }
@@ -235,13 +237,14 @@ class _WhiteContainerState extends State<WhiteContainer> {
                 ),
                 InkWell(
                   onTap: () {
+                    int age = int.parse(ageController.text);
                     double weight = double.parse(weightController.text);
                     double height= double.parse(heightController.text);
                     double bmiValue = (weight/(height*height))*10000;  //square(5cm*100)=>meter square
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ResultPage(bmi_value: bmiValue,),
+                          builder: (context) => ResultPage(bmi_value: bmiValue, age: age),
                         ));
                   },
                   borderRadius: BorderRadius.circular(8),

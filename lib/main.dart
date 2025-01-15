@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/intro.dart';
+import 'package:flutter_application_1/pages/lottie.dart';
+import 'package:flutter_application_1/pages/ternary.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: CreateApp(), //const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyLottieWidget(), //const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

@@ -4,9 +4,11 @@ import 'package:flutter_application_1/widgets/classification_widgets.dart';
 import 'package:flutter_application_1/widgets/pie_chart_widget.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({super.key, required this.bmi_value});
-  
+  const ResultPage({super.key, required this.bmi_value, required this.age});
+
   final double bmi_value;
+  final int age;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +75,9 @@ class ResultPage extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 40),
-                        PieChartWidget(bmi_value: bmi_value,),
+                        PieChartWidget(
+                          bmi_value: bmi_value,
+                        ),
                         SizedBox(height: 40, width: 10),
                         Text(
                           'You Have Normal body Weight !',
@@ -89,9 +93,9 @@ class ResultPage extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.lightBlue[200],
                               borderRadius: BorderRadius.circular(26)),
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 26, vertical: 16),
-                          child: BmiDetailsRowWidget(),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 26, vertical: 16),
+                          child: BmiDetailsRowWidget(age: age),
                         ),
                         SizedBox(height: 20),
                         ClassificationColumnData()
