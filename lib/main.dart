@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/lottie.dart';
-import 'package:flutter_application_1/pages/ternary.dart';
 
 void main() {
   runApp(const MyApp());
